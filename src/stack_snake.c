@@ -27,11 +27,12 @@ stack_snake *tail_create(int x, int y, stack_snake *old_tail){
 }
 
 void clear_stack(stack_snake *snake_linck){
-    while(snake_linck->next != NULL){
+    if(snake_linck->next != NULL){
         clear_stack(snake_linck->next);
     }
 
     free(snake_linck);
-    return;
 
 }
+
+

@@ -9,6 +9,8 @@
 
 void press_key(int *step_x, int *step_y);
 
+void clear_all(stack_snake *tail_old);
+
 int move_head(stack_snake *head, int mov_x, int mov_y, int field[HIGH][WIDTH]);
 int move_snake(stack_snake *piece, int field[HIGH][WIDTH], int x_head, int y_head);
 int smash_wall(int x, int y);
@@ -85,7 +87,7 @@ int main(){
         update_screan += 5000;
 
     }
-    usleep(10000000);
+    clear_all(head);
     endwin();
     return 0;
 }
@@ -195,7 +197,7 @@ int creat_apple(int *x, int *y, int field[HIGH][WIDTH]){
                 len+=1;
             }
         }
-        *y = *y % (HIGH - 1) + 1;
+        *y = *y % (HIGH - 2) + 1;
 
     }
 
@@ -219,6 +221,7 @@ int eat_apple(int x_apple, int y_apple, stack_snake *head){
 }
 
 void drow(int field[HIGH][WIDTH]){
+
 
     clear();
     for(int y = 0; y < HIGH; y++){
@@ -247,5 +250,14 @@ void drow(int field[HIGH][WIDTH]){
         printw("\n");
     }
     refresh();
+
+}
+
+void clear_all(stack_snake *tail_old){
+    if(tail_old->next != NULL){
+        clear_all(tail_old->next);
+    }
+
+    free(tail_old);
 
 }
