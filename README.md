@@ -1,2 +1,5 @@
-# snake
-Old game in 2023
+# Snake
+
+### Example
+
+![snake](materials/example.png)
